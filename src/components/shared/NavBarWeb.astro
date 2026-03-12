@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import foto from "@images/img1.png";
+import { Picture } from "astro:assets";
+
+const links = [
+	// { href: "/", text: "Inicio" },
+	{ href: "/trabajos", text: "Trabajos" },
+	{ href: "/servicios", text: "Servicios" },
+	{ href: "/nosotros", text: "Nosotros" },
+	{ href: "/contacto", text: "Contacto" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="shadow bg-slate-800">
+	<div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize">
+		<div class="mx-3 sm:mx-6">
+			<a href="/">
+				<Picture src={foto} width="80" alt="Logo Pavimentos Urbanos" class="" />
+			</a>
+		</div>
+		{
+			links.map(({ href, text }) => (
+				<div>
+					<a href={href} class="text-white mx-1.5 sm:mx-6">
+						{text}
+					</a>
+					{currentPath === href ? (
+						<div transition:name="menu-line" class="border-b-2 border-blue-500 mx-4" />
+					) : (
+						// TODO: Hav
+						<div class="border-b-2 border-transparent" />
+					)}
+				</div>
+			))
+		}
+	</div>
+</nav>

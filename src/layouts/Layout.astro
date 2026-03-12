@@ -1,15 +1,50 @@
+---
+import "../styles/global.css";
+import NavBarWeb from "../components/shared/NavBarWeb.astro";
+import FooterWeb from "../components/shared/FooterWeb.astro";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = "Pavimentos Urbanos Spa", description }: Props = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		{description && <meta name="description" content={description} />}
+		<link rel="canonical" href={canonical} />
+		<meta
+			name="robots"
+			content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+		/>
+		<meta property="og:type" content="website" />
+		<meta name="autor" content={"byRama - Javier Ramirez"} />
+		<meta property="og:locale" content="es_CL" />
+		<meta property="og:title" content={title} />
+		{description && <meta property="og:description" content={description} />}
+		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content={title} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		{description && <meta name="twitter:description" content={description} />}
+		<title>{title}</title>
+		<ClientRouter />
 	</head>
 	<body>
-		<slot />
+		<NavBarWeb />
+		<main>
+			<slot />
+		</main>
+		<FooterWeb />
 	</body>
 </html>
 
