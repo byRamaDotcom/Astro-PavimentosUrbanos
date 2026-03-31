@@ -1,7 +1,94 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import InternalPageHeader from "@components/sections/InternalPageHeader.astro";
+import PlaceholderMedia from "@components/ui/PlaceholderMedia.astro";
+import { company, contactChannels, contactHighlights } from "@data/site";
 ---
 
-<Layout title="Contacto | Pavimentos Urbanos">
-	<h1>Contacto</h1>
+<Layout
+	title={`Contacto | ${company.name}`}
+	description="Contacta a Pavimentos Urbanos para urbanización, pavimentación, obras civiles, movimientos de tierra y reuniones comerciales."
+>
+	<InternalPageHeader
+		crumb="Contacto"
+		eyebrow="Contacto"
+		title="Un punto de entrada claro para oportunidades comerciales y presentación de servicios."
+		description="La navegación interna termina aquí de forma natural: contacto directo, canales disponibles y siguiente paso claro para avanzar en una conversación comercial."
+		links={[
+			{ label: "Ir a servicios", href: "/servicios" },
+			{ label: "Ver trabajos", href: "/trabajos" },
+			{ label: "Conocer la empresa", href: "/nosotros" },
+		]}
+		stats={[
+			{ value: "4", label: "canales activos" },
+			{ value: "08:30-18:00", label: "horario base" },
+		]}
+	/>
+
+	<section class="section-block section-block--tight-top">
+		<div class="site-shell contact-grid">
+			<div class="page-hero__copy">
+				<h2>Canal principal de contacto</h2>
+				<p>
+					Esta página deja resuelto el frente de contacto para que luego agregues teléfono definitivo,
+					formulario conectado o botón de WhatsApp sin rehacer la estructura ni el recorrido del
+					usuario.
+				</p>
+				<div class="contact-actions">
+					<a href={`mailto:${company.recipientEmail}`} class="button button--primary">
+						<Icon name="email" />
+						{company.recipientEmail}
+					</a>
+					<a href="/" class="button button--secondary">Volver al inicio</a>
+				</div>
+			</div>
+
+			<div class="contact-panel">
+				<p class="contact-panel__eyebrow">Información base</p>
+				<h2>Datos corporativos editables</h2>
+				<ul>
+					<li>{company.location}</li>
+					<li>{company.phone}</li>
+					<li>{company.schedule}</li>
+					<li>{company.coverage}</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section-block section-block--contrast">
+		<div class="site-shell contact-grid">
+			{
+				contactChannels.map((channel) => (
+					<a class="contact-item contact-item--channel" href={channel.href} target="_blank" rel="noreferrer">
+						<strong>
+							<Icon name={channel.icon} />
+							{channel.title}
+						</strong>
+						<p>{channel.value}</p>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section-block">
+		<div class="site-shell contact-grid">
+			<div>
+				<PlaceholderMedia
+					variant="wide"
+					label="Placeholder de mapa o faena"
+					title="Espacio preparado para foto, mapa o formulario"
+				/>
+			</div>
+			<div class="contact-panel">
+				<p class="contact-panel__eyebrow">Siguiente mejora</p>
+				<h2>Qué puedes reemplazar después</h2>
+				<ul>
+					{contactHighlights.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</div>
+	</section>
 </Layout>

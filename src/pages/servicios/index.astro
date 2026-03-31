@@ -1,7 +1,38 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import InternalPageHeader from "@components/sections/InternalPageHeader.astro";
+import ServiceOverview from "@components/sections/ServiceOverview.astro";
+import CallToActionBand from "@components/sections/CallToActionBand.astro";
+import { company, services } from "@data/site";
 ---
 
-<Layout title="Servicios | Pavimentos Urbanos">
-	<h1>Servicios</h1>
+<Layout
+	title={`Servicios | ${company.name}`}
+	description="Servicios de desarrollo de ingeniería, urbanización, montajes eléctricos, movimientos de tierra y obras de construcción de Pavimentos Urbanos."
+>
+	<InternalPageHeader
+		crumb="Servicios"
+		eyebrow="Servicios principales"
+		title="Capacidades preparadas para exhibir una empresa con experiencia real."
+		description="La página de servicios ahora funciona más como navegación natural del sitio: te orienta rápido, organiza la oferta de valor y conecta con cada detalle sin sentirse como otra portada."
+		links={[
+			{ label: "Ver trabajos", href: "/trabajos" },
+			{ label: "Conocer la empresa", href: "/nosotros" },
+			{ label: "Solicitar contacto", href: "/contacto" },
+		]}
+		stats={[
+			{ value: String(services.length), label: "líneas de servicio" },
+			{ value: "30+", label: "años de trayectoria" },
+		]}
+	/>
+
+	<ServiceOverview
+		eyebrow="Oferta de valor"
+		title="Cinco líneas de servicio para presentar alcance, especialidad y ejecución."
+		description="Cada servicio cuenta con una página de detalle para poder crecer con fotografías, certificaciones, antecedentes y casos reales sin rehacer la navegación."
+	/>
+	<CallToActionBand
+		title="La web ya queda preparada para sumar fichas, brochures y material comercial por servicio."
+		primaryLabel="Solicitar propuesta"
+	/>
 </Layout>

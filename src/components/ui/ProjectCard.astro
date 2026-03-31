@@ -1,0 +1,24 @@
+---
+import PlaceholderMedia from "@components/ui/PlaceholderMedia.astro";
+import type { projects } from "@data/site";
+
+interface Props {
+	project: (typeof projects)[number];
+}
+
+const { project }: Props = Astro.props;
+---
+
+<article class="project-card">
+	<PlaceholderMedia variant="card" label={project.category} title={project.name} />
+	<div class="project-card__body">
+		<div class="project-card__meta">
+			<span>{project.location}</span>
+			<span>{project.year}</span>
+		</div>
+		<h3>{project.name}</h3>
+		<p>{project.scope}</p>
+		<a href={`/obras/${project.slug}`} class="link-arrow">Explorar proyecto</a>
+	</div>
+</article>
+

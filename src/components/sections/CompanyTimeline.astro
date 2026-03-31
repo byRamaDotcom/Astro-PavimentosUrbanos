@@ -1,0 +1,26 @@
+---
+import SectionHeading from "@components/ui/SectionHeading.astro";
+import { timeline } from "@data/site";
+---
+
+<section class="section-block">
+	<div class="site-shell timeline-layout">
+		<SectionHeading
+			eyebrow="Trayectoria"
+			title="Treinta años de experiencia convertidos en una identidad corporativa más clara."
+			description="La web pone en valor una historia de trabajo acumulado, reforzando la percepción de empresa confiable y preparada para proyectos urbanos."
+		/>
+		<div class="timeline-grid">
+			{
+				timeline.map((item) => (
+					<article class="timeline-card">
+						<span>{item.year}</span>
+						<h3>{item.title}</h3>
+						<p>{item.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+

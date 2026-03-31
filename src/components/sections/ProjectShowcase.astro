@@ -1,0 +1,26 @@
+---
+import SectionHeading from "@components/ui/SectionHeading.astro";
+import ProjectCard from "@components/ui/ProjectCard.astro";
+import { projects } from "@data/site";
+
+interface Props {
+	limit?: number;
+}
+
+const { limit }: Props = Astro.props;
+const visibleProjects = typeof limit === "number" ? projects.slice(0, limit) : projects;
+---
+
+<section class="section-block section-block--contrast">
+	<div class="site-shell">
+		<SectionHeading
+			eyebrow="Trabajos"
+			title="Proyectos y frentes tipo para exhibir capacidad de ejecución."
+			description="Estas fichas quedan preparadas para que reemplaces imágenes, nombres y alcances por obras reales sin rehacer el diseño."
+		/>
+		<div class="project-grid">
+			{visibleProjects.map((project) => <ProjectCard project={project} />)}
+		</div>
+	</div>
+</section>
+

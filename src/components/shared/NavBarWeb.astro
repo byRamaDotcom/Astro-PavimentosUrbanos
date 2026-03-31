@@ -1,40 +1,91 @@
 ---
 import { Image } from "astro:assets";
-import foto from "@images/img1.png";
-import { Picture } from "astro:assets";
-
-const links = [
-	// { href: "/", text: "Inicio" },
-	{ href: "/trabajos", text: "Trabajos" },
-	{ href: "/servicios", text: "Servicios" },
-	{ href: "/nosotros", text: "Nosotros" },
-	{ href: "/contacto", text: "Contacto" },
-];
+import { Icon } from "astro-icon/components";
+import logo from "@assets/LogoFull.svg";
+import { company, navigation } from "@data/site";
 
 const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+	href === "/" ? currentPath === "/" : currentPath === href || currentPath.startsWith(`${href}/`);
+const navVariant = currentPath === "/" ? "home" : "interior";
 ---
 
-<nav class="shadow bg-slate-800">
-	<div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize">
-		<div class="mx-3 sm:mx-6">
-			<a href="/">
-				<Picture src={foto} width="80" alt="Logo Pavimentos Urbanos" class="" />
+<nav class:list={["site-nav", `site-nav--${navVariant}`]} data-nav-root>
+	<div class="site-nav__bar">
+		<a href="/" class="site-brand" aria-label={`Ir al inicio de ${company.name}`}>
+			<span class="site-brand__mark">
+				<Image src={logo} alt={`Logo ${company.name}`} width={72} quality="high" />
+			</span>
+			<span class="site-brand__copy">
+				<strong>{company.name}</strong>
+				<span>Inicio · {company.tagline}</span>
+			</span>
+		</a>
+
+		<div class="site-nav__links">
+			{
+				navigation.map((item) => (
+					<a href={item.href} class:list={{ active: isActive(item.href) }}>
+						{item.label}
+					</a>
+				))
+			}
+		</div>
+
+		<div class="site-nav__actions">
+			<a href="/#contacto-directo" class="button button--secondary">
+				<Icon name="sparkles" />
+				Contacto directo
+			</a>
+			<a href="/contacto" class="button button--primary">
+				<Icon name="email" />
+				Solicitar reunión
 			</a>
 		</div>
-		{
-			links.map(({ href, text }) => (
-				<div>
-					<a href={href} class="text-white mx-1.5 sm:mx-6">
-						{text}
-					</a>
-					{currentPath === href ? (
-						<div transition:name="menu-line" class="border-b-2 border-blue-500 mx-4" />
-					) : (
-						// TODO: Hav
-						<div class="border-b-2 border-transparent" />
-					)}
-				</div>
-			))
-		}
+
+		<details class="site-nav__mobile">
+			<summary aria-label="Abrir navegación">
+				<span />
+			</summary>
+			<div class="site-nav__mobile-panel">
+				{
+					navigation.map((item) => (
+						<a href={item.href} class:list={{ active: isActive(item.href) }}>
+							{item.label}
+						</a>
+					))
+				}
+				<a href="/#contacto-directo" class="button button--secondary">Contacto directo</a>
+				<a href="/contacto" class="button button--primary">Solicitar reunión</a>
+			</div>
+		</details>
 	</div>
 </nav>
+
+<script>
+	const cleanupKey = "__puNavbarScrollCleanup";
+
+	function mountNavbarGlass() {
+		const nav = document.querySelector("[data-nav-root]");
+		if (!nav) return;
+
+		if (typeof nav[cleanupKey] === "function") {
+			nav[cleanupKey]();
+		}
+
+		const applyState = () => {
+			nav.dataset.scrolled = window.scrollY > 24 ? "true" : "false";
+		};
+
+		applyState();
+		window.addEventListener("scroll", applyState, { passive: true });
+
+		nav[cleanupKey] = () => {
+			window.removeEventListener("scroll", applyState);
+			delete nav[cleanupKey];
+		};
+	}
+
+	document.addEventListener("astro:page-load", mountNavbarGlass);
+	mountNavbarGlass();
+</script>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#171613"/>
+  <path d="M0 410 290 250l150 55 230-120 220 70 310-95v470H0V410Z" fill="#8f5a21"/>
+  <path d="M0 500 300 360l160 45 230-95 220 55 290-80v345H0V500Z" fill="#c68433"/>
+  <path d="M68 70h460v118H68z" fill="#fff3df" fill-opacity=".08"/>
+  <path d="M700 68h420v198H700z" fill="#fff3df" fill-opacity=".06"/>
+  <text x="72" y="308" fill="#F8F1E5" font-family="Arial Narrow, Arial, sans-serif" font-size="88" font-weight="700" letter-spacing="5">PAVIMENTOS</text>
+  <text x="72" y="392" fill="#F8F1E5" font-family="Arial Narrow, Arial, sans-serif" font-size="88" font-weight="700" letter-spacing="5">URBANOS</text>
+  <text x="74" y="458" fill="#E2D3BD" font-family="Arial, sans-serif" font-size="28">Urbanización, pavimentación y obras civiles</text>
+</svg>

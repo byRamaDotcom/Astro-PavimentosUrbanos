@@ -1,7 +1,34 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import InternalPageHeader from "@components/sections/InternalPageHeader.astro";
+import ProjectShowcase from "@components/sections/ProjectShowcase.astro";
+import CallToActionBand from "@components/sections/CallToActionBand.astro";
+import { company, projects } from "@data/site";
 ---
 
-<Layout title="Trabajos | Pavimentos Urbanos">
-	<h1>Trabajos</h1>
+<Layout
+	title={`Trabajos | ${company.name}`}
+	description="Explora trabajos y proyectos de referencia en urbanización, pavimentos y obras civiles de Pavimentos Urbanos."
+>
+	<InternalPageHeader
+		crumb="Trabajos"
+		eyebrow="Trabajos y vitrina"
+		title="Una vitrina lista para reemplazar placeholders por obras reales."
+		description="Esta sección se plantea como portafolio navegable: menos hero, más continuidad, mejor relación entre fichas, categorías y próximos pasos comerciales."
+		links={[
+			{ label: "Explorar servicios", href: "/servicios" },
+			{ label: "Ir a contacto", href: "/contacto" },
+			{ label: "Volver al inicio", href: "/" },
+		]}
+		stats={[
+			{ value: String(projects.length), label: "fichas base" },
+			{ value: "2025-26", label: "años de referencia" },
+		]}
+	/>
+
+	<ProjectShowcase />
+	<CallToActionBand
+		title="¿Quieres usar esta vitrina para licitaciones, presentación comercial o reputación de marca?"
+		primaryLabel="Coordinar presentación"
+	/>
 </Layout>

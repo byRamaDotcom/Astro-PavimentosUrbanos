@@ -1,58 +1,111 @@
 ---
 import "../styles/global.css";
-import NavBarWeb from "../components/shared/NavBarWeb.astro";
-import FooterWeb from "../components/shared/FooterWeb.astro";
+import NavBarWeb from "@components/shared/NavBarWeb.astro";
+import FooterWeb from "@components/shared/FooterWeb.astro";
 import { ClientRouter } from "astro:transitions";
+import { company } from "@data/site";
 
 interface Props {
 	title?: string;
 	description?: string;
+	image?: string;
+	robots?: string;
+	type?: string;
+	noindex?: boolean;
 }
 
-const { title = "Pavimentos Urbanos Spa", description }: Props = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+const {
+	title = `${company.name} | ${company.tagline}`,
+	description = company.seoDescription,
+	image = company.defaultOgImage,
+	robots,
+	type = "website",
+	noindex = false,
+}: Props = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(company.siteUrl);
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+const robotsContent = noindex
+	? "noindex,nofollow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+	: (robots ?? "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1");
+
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	name: company.legalName,
+	alternateName: company.shortName,
+	url: company.siteUrl,
+	logo: new URL("/favicon.svg", siteUrl).toString(),
+	email: company.email,
+	telephone: company.phone,
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Santiago",
+		addressCountry: "CL",
+	},
+	contactPoint: [
+		{
+			"@type": "ContactPoint",
+			contactType: "sales",
+			email: company.recipientEmail,
+			telephone: company.phone,
+			areaServed: "CL",
+			availableLanguage: ["es"],
+		},
+	],
+};
+
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: company.name,
+	url: company.siteUrl,
+	inLanguage: "es-CL",
+	description,
+};
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#171613" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		{description && <meta name="description" content={description} />}
-		<link rel="canonical" href={canonical} />
-		<meta
-			name="robots"
-			content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
 		/>
-		<meta property="og:type" content="website" />
-		<meta name="autor" content={"byRama - Javier Ramirez"} />
+		<link rel="canonical" href={canonical} />
+		<meta name="robots" content={robotsContent} />
+		<meta property="og:type" content={type} />
 		<meta property="og:locale" content="es_CL" />
 		<meta property="og:title" content={title} />
-		{description && <meta property="og:description" content={description} />}
+		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
-		<meta property="og:site_name" content={title} />
+		<meta property="og:site_name" content={company.name} />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:alt" content={`${company.name} - ${company.tagline}`} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
-		{description && <meta name="twitter:description" content={description} />}
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+		<meta name="twitter:image:alt" content={`${company.name} - ${company.tagline}`} />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 		<ClientRouter />
 	</head>
 	<body>
 		<NavBarWeb />
-		<main>
+		<main class="site-main">
 			<slot />
 		</main>
 		<FooterWeb />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

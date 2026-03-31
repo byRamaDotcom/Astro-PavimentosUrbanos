@@ -1,0 +1,23 @@
+---
+import { differentiators } from "@data/site";
+---
+
+<section class="section-block">
+	<div class="site-shell trust-strip">
+		<div>
+			<p class="section-eyebrow">Valor de marca</p>
+			<h2>Una presencia corporativa pensada para transmitir solidez, experiencia y control.</h2>
+		</div>
+		<div class="trust-list">
+			{
+				differentiators.map((item) => (
+					<div class="trust-item">
+						<span />
+						<p>{item}</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+

@@ -1,11 +1,26 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { Icon } from "astro-icon/components";
+import HeroConstruction from "@components/sections/HeroConstruction.astro";
+import BrandStatement from "@components/sections/BrandStatement.astro";
+import ServiceOverview from "@components/sections/ServiceOverview.astro";
+import ProjectShowcase from "@components/sections/ProjectShowcase.astro";
+import CompanyTimeline from "@components/sections/CompanyTimeline.astro";
+import TrustStrip from "@components/sections/TrustStrip.astro";
+import CallToActionBand from "@components/sections/CallToActionBand.astro";
+import OmnichannelContact from "@components/sections/OmnichannelContact.astro";
+import { company } from "@data/site";
 ---
 
-<Layout title="Pavimentos Urbanos Spa">
-	<div class="h-300 bg-white">
-		<h1>Inicio</h1>
-		<Icon name="download" size={50} />
-	</div>
+<Layout
+	title={`${company.name} | Urbanización, pavimentación y obras civiles en Chile`}
+	description="Constructora especializada en urbanización, pavimentación, movimientos de tierra, montajes eléctricos y obras civiles con 30 años de experiencia en Chile."
+>
+	<HeroConstruction />
+	<BrandStatement />
+	<ServiceOverview />
+	<ProjectShowcase limit={4} />
+	<CompanyTimeline />
+	<TrustStrip />
+	<CallToActionBand />
+	<OmnichannelContact />
 </Layout>

@@ -1,0 +1,19 @@
+---
+interface Props {
+	label?: string;
+	title?: string;
+	variant?: "hero" | "card" | "wide";
+}
+
+const { label = "Placeholder editable", title = "Imagen referencial de obra", variant = "card" }: Props =
+	Astro.props;
+---
+
+<div class:list={["placeholder-media", `placeholder-media--${variant}`]}>
+	<div class="placeholder-media__grid" />
+	<div class="placeholder-media__overlay">
+		<span>{label}</span>
+		<strong>{title}</strong>
+	</div>
+</div>
+

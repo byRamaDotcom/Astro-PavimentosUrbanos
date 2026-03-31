@@ -1,0 +1,75 @@
+---
+interface LinkItem {
+	label: string;
+	href: string;
+}
+
+interface StatItem {
+	label: string;
+	value: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	description: string;
+	crumb?: string;
+	links?: LinkItem[];
+	stats?: StatItem[];
+}
+
+const {
+	eyebrow,
+	title,
+	description,
+	crumb = "Interior",
+	links = [],
+	stats = [],
+}: Props = Astro.props;
+---
+
+<section class="section-block internal-header">
+	<div class="site-shell">
+		<div class="internal-header__top">
+			<nav class="internal-breadcrumb" aria-label="Breadcrumb">
+				<a href="/">Inicio</a>
+				<span>/</span>
+				<span>{crumb}</span>
+			</nav>
+		</div>
+
+		<div class="internal-header__grid">
+			<div class="internal-header__copy">
+				{eyebrow && <p class="section-eyebrow">{eyebrow}</p>}
+				<h1>{title}</h1>
+				<p>{description}</p>
+			</div>
+
+			<div class="internal-header__side">
+				{
+					links.length > 0 && (
+						<div class="internal-card">
+							<p class="internal-card__eyebrow">Accesos rápidos</p>
+							<div class="internal-linklist">
+								{links.map((link) => <a href={link.href}>{link.label}</a>)}
+							</div>
+						</div>
+					)
+				}
+
+				{
+					stats.length > 0 && (
+						<div class="internal-statgrid">
+							{stats.map((stat) => (
+								<div class="internal-stat">
+									<strong>{stat.value}</strong>
+									<span>{stat.label}</span>
+								</div>
+							))}
+						</div>
+					)
+				}
+			</div>
+		</div>
+	</div>
+</section>

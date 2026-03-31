@@ -1,0 +1,40 @@
+---
+import { company } from "@data/site";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	title?: string;
+	copy?: string;
+	primaryHref?: string;
+	primaryLabel?: string;
+}
+
+const {
+	title = "¿Buscas una empresa para presentar, coordinar o ejecutar tu próximo frente de obra?",
+	copy = `${company.name} cuenta con una base corporativa lista para evolucionar con proyectos reales, fotografías y antecedentes comerciales más específicos.`,
+	primaryHref = "/contacto",
+	primaryLabel = "Hablar con la empresa",
+}: Props = Astro.props;
+---
+
+<section class="section-block">
+	<div class="site-shell">
+		<div class="cta-band">
+			<div>
+				<p class="section-eyebrow">Contacto comercial</p>
+				<h2>{title}</h2>
+				<p>{copy}</p>
+			</div>
+			<div class="cta-band__actions">
+				<a href={primaryHref} class="button button--primary">
+					<Icon name="send" />
+					{primaryLabel}
+				</a>
+				<a href={`mailto:${company.email}`} class="button button--secondary">
+					<Icon name="email" />
+					{company.email}
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

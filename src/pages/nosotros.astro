@@ -1,10 +1,36 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Team from "../components/Team.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+import InternalPageHeader from "@components/sections/InternalPageHeader.astro";
+import CompanyTimeline from "@components/sections/CompanyTimeline.astro";
+import TrustStrip from "@components/sections/TrustStrip.astro";
+import CallToActionBand from "@components/sections/CallToActionBand.astro";
+import { company } from "@data/site";
 ---
 
-<Layout title="Sobre nosotros | Pavimentos Urbanos">
-  <Welcome />
-  <Team />
+<Layout
+	title={`Nosotros | ${company.name}`}
+	description="Conoce la trayectoria de 30 años de Pavimentos Urbanos en urbanización, pavimentación y obras civiles en Chile."
+>
+	<InternalPageHeader
+		crumb="Nosotros"
+		eyebrow="Quiénes somos"
+		title="Treinta años de experiencia convertidos en una presencia corporativa más fuerte."
+		description={`${company.name} se presenta aquí como empresa, no como landing: una lectura más fluida para entender trayectoria, capacidades y criterio de ejecución.`}
+		links={[
+			{ label: "Ver servicios", href: "/servicios" },
+			{ label: "Ver trabajos", href: "/trabajos" },
+			{ label: "Contacto comercial", href: "/contacto" },
+		]}
+		stats={[
+			{ value: "30+", label: "años construyendo" },
+			{ value: "CL", label: "cobertura local" },
+		]}
+	/>
+
+	<CompanyTimeline />
+	<TrustStrip />
+	<CallToActionBand
+		title="La narrativa corporativa queda lista para sumar hitos, clientes y certificaciones cuando quieras."
+		primaryLabel="Hablar con la empresa"
+	/>
 </Layout>

@@ -1,4 +1,72 @@
 ---
+import Layout from "@layouts/Layout.astro";
+import InternalPageHeader from "@components/sections/InternalPageHeader.astro";
+import PlaceholderMedia from "@components/ui/PlaceholderMedia.astro";
+import CallToActionBand from "@components/sections/CallToActionBand.astro";
+import { company, projects } from "@data/site";
 
+export function getStaticPaths() {
+	return projects.map((project) => ({
+		params: { proyecto: project.slug },
+		props: { project },
+	}));
+}
+
+const { project } = Astro.props;
 ---
 
+<Layout title={`${project.name} | ${company.name}`} description={project.scope}>
+	<InternalPageHeader
+		crumb="Detalle de obra"
+		eyebrow={project.category}
+		title={project.name}
+		description={project.scope}
+		links={[
+			{ label: "Todos los trabajos", href: "/trabajos" },
+			{ label: "Servicios", href: "/servicios" },
+			{ label: "Contacto", href: "/contacto" },
+		]}
+		stats={[
+			{ value: project.year, label: "año de referencia" },
+			{ value: project.location, label: "ubicación" },
+		]}
+	/>
+
+	<section class="section-block section-block--tight-top">
+		<div class="site-shell page-hero__accent">
+			<PlaceholderMedia
+				variant="wide"
+				label={`${project.location} · ${project.year}`}
+				title="Placeholder para fotografía del proyecto"
+			/>
+		</div>
+	</section>
+
+	<section class="section-block section-block--contrast">
+		<div class="site-shell detail-grid">
+			<div class="detail-shell">
+				<p class="section-eyebrow">Ficha de proyecto</p>
+				<h2>Espacio preparado para transformar una referencia visual en caso real.</h2>
+				<p>
+					Aquí puedes incorporar superficie intervenida, mandante, plazos, fotografías y resultado
+					final sin tener que cambiar la estructura de diseño.
+				</p>
+			</div>
+			<div class="detail-panel">
+				<p class="detail-panel__eyebrow">Datos base</p>
+				<h2>{project.name}</h2>
+				<ul>
+					<li>Ubicación: {project.location}</li>
+					<li>Año de referencia: {project.year}</li>
+					<li>Categoría: {project.category}</li>
+					<li>Alcance: {project.scope}</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<CallToActionBand
+		title="Cada ficha de obra queda lista para sumar fotografías reales y transformarse en un caso comercial."
+		primaryLabel="Solicitar presentación"
+	/>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+import logo from "@assets/LogoFull.svg";
+import { company, typographyOptions } from "@data/site";
+---
+
+<section class="section-block">
+	<div class="site-shell brand-showcase">
+		<div class="brand-showcase__mark">
+			<Image src={logo} alt={`Logo ${company.name}`} width={260} quality="high" />
+		</div>
+		<div class="brand-showcase__copy">
+			<p class="section-eyebrow">Marca y presencia</p>
+			<h2>{company.name}</h2>
+			<p class="brand-showcase__lead">
+				El logo y el naming ahora tienen un escenario propio: una sección para reforzar recordación,
+				darle peso a la marca y evitar que toda la identidad dependa solo del hero o del navbar.
+			</p>
+			<div class="typography-grid">
+				{
+					typographyOptions.map((option) => (
+						<article class="type-card">
+							<strong>{option.name}</strong>
+							<h3>{option.headings} + {option.body}</h3>
+							<p>{option.reason}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+

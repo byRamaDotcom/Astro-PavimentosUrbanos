@@ -1,0 +1,27 @@
+---
+import SectionHeading from "@components/ui/SectionHeading.astro";
+import ServiceCard from "@components/ui/ServiceCard.astro";
+import { services } from "@data/site";
+
+interface Props {
+	eyebrow?: string;
+	title?: string;
+	description?: string;
+}
+
+const {
+	eyebrow = "Servicios",
+	title = "Capacidades preparadas para proyectos urbanos exigentes.",
+	description = "La primera versión del sitio organiza las líneas de negocio de forma clara para presentar experiencia, alcance y potencial de ejecución frente a clientes, licitaciones y alianzas.",
+}: Props = Astro.props;
+---
+
+<section class="section-block">
+	<div class="site-shell">
+		<SectionHeading eyebrow={eyebrow} title={title} description={description} />
+		<div class="service-grid">
+			{services.map((service, index) => <ServiceCard service={service} index={index} />)}
+		</div>
+	</div>
+</section>
+

@@ -1,0 +1,69 @@
+---
+import Layout from "@layouts/Layout.astro";
+import InternalPageHeader from "@components/sections/InternalPageHeader.astro";
+import PlaceholderMedia from "@components/ui/PlaceholderMedia.astro";
+import CallToActionBand from "@components/sections/CallToActionBand.astro";
+import { company, services } from "@data/site";
+
+export function getStaticPaths() {
+	return services.map((service) => ({
+		params: { servicio: service.slug },
+		props: { service },
+	}));
+}
+
+const { service } = Astro.props;
+---
+
+<Layout title={`${service.name} | ${company.name}`} description={service.shortDescription}>
+	<InternalPageHeader
+		crumb="Detalle de servicio"
+		eyebrow="Detalle de servicio"
+		title={service.name}
+		description={service.description}
+		links={[
+			{ label: "Todos los servicios", href: "/servicios" },
+			{ label: "Trabajos", href: "/trabajos" },
+			{ label: "Contacto", href: "/contacto" },
+		]}
+		stats={[
+			{ value: "03", label: "bloques de alcance" },
+			{ value: "PU", label: "presentación corporativa" },
+		]}
+	/>
+
+	<section class="section-block section-block--tight-top">
+		<div class="site-shell page-hero__accent">
+			<PlaceholderMedia
+				variant="wide"
+				label="Imagen editable"
+				title={`Visual para ${service.name}`}
+			/>
+		</div>
+	</section>
+
+	<section class="section-block section-block--contrast">
+		<div class="site-shell detail-grid">
+			<div class="detail-shell">
+				<p class="section-eyebrow">Enfoque</p>
+				<h2>Presentación preparada para crecer con antecedentes técnicos reales.</h2>
+				<p>
+					Esta ficha deja resuelto el marco visual y narrativo para que luego puedas sumar fotografías,
+					especificaciones, clientes, certificados o documentación comercial.
+				</p>
+			</div>
+			<div class="detail-panel">
+				<p class="detail-panel__eyebrow">Qué incluye</p>
+				<h2>{service.name}</h2>
+				<ul>
+					{service.deliverables.map((item: string) => <li>{item}</li>)}
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<CallToActionBand
+		title={`La página de ${service.name.toLowerCase()} ya está lista para sumar casos y evidencia visual.`}
+		primaryLabel="Solicitar información"
+	/>
+</Layout>

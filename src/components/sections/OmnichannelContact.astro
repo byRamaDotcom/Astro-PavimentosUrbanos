@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+import { company, contactChannels } from "@data/site";
+
+const mailtoAction = `mailto:${company.recipientEmail}?subject=Contacto%20desde%20la%20web%20de%20Pavimentos%20Urbanos`;
+---
+
+<section class="section-block section-block--contrast" id="contacto-directo">
+	<div class="site-shell">
+		<div class="section-heading">
+			<p class="section-eyebrow">Omnicanalidad</p>
+			<h2>Un cierre de home pensado para convertir visitas en conversaciones reales.</h2>
+			<p class="section-copy">
+				Además del correo, la página ahora ofrece distintas rutas de contacto para captar consultas
+				comerciales desde distintos hábitos de usuario.
+			</p>
+		</div>
+
+		<div class="omnichannel-layout">
+			<div class="channel-grid">
+				{
+					contactChannels.map((channel) => (
+						<a href={channel.href} class="channel-card" target="_blank" rel="noreferrer">
+							<span class="channel-card__icon">
+								<Icon name={channel.icon} />
+							</span>
+							<strong>{channel.title}</strong>
+							<p>{channel.value}</p>
+						</a>
+					))
+				}
+			</div>
+
+			<form
+				class="contact-form"
+				action={mailtoAction}
+				method="post"
+				enctype="text/plain">
+				<div class="contact-form__intro">
+					<p class="section-eyebrow">Formulario rápido</p>
+					<h3>Enviar consulta por correo</h3>
+					<p>
+						Este formulario abre el cliente de correo del visitante con el destinatario listo en
+						{company.recipientEmail}.
+					</p>
+				</div>
+
+				<label>
+					<span>Nombre</span>
+					<input type="text" name="Nombre" placeholder="Tu nombre" required />
+				</label>
+				<label>
+					<span>Correo</span>
+					<input type="email" name="Correo" placeholder="nombre@empresa.cl" required />
+				</label>
+				<label>
+					<span>Empresa</span>
+					<input type="text" name="Empresa" placeholder="Empresa o proyecto" />
+				</label>
+				<label>
+					<span>Canal preferido</span>
+					<select name="Canal preferido">
+						<option>Correo</option>
+						<option>WhatsApp</option>
+						<option>Llamada</option>
+						<option>LinkedIn</option>
+					</select>
+				</label>
+				<label class="contact-form__full">
+					<span>Mensaje</span>
+					<textarea
+						name="Mensaje"
+						rows="5"
+						placeholder="Cuéntanos brevemente qué tipo de obra, servicio o reunión necesitas."
+						required />
+				</label>
+
+				<button type="submit" class="button button--primary">
+					<Icon name="send" />
+					Enviar consulta
+				</button>
+			</form>
+		</div>
+	</div>
+</section>
