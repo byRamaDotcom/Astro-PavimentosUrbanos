@@ -1,57 +1,31 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import logo from "@assets/LogoFull.svg";
+import logo from "@assets/LogoFullbn.svg";
+import logoMid from "@assets/LogoMidB.svg";
 import { company, contactChannels, navigation, services } from "@data/site";
 ---
 
 <footer class="site-footer">
-	<div class="site-shell">
+	<div class="">
 		<div class="footer-grid">
 			<div class="foot-card">
 				<div class="site-brand">
-					<span class="site-brand__mark">
-						<Image src={logo} alt={`Logo ${company.name}`} width={54} quality="high" />
+					<span class="">
+						<Image src={logo} alt={`Logo ${company.name}`} width={80} quality="high" />
 					</span>
-					<span class="site-brand__copy">
-						<strong>{company.name}</strong>
-						<span>{company.tagline}</span>
+					<span class="px-2">
+						<Image src={logoMid} alt={`Logo ${company.name}`} width={90} quality="high" />
 					</span>
 				</div>
-				<h3>Constructora orientada a urbanización y desarrollo constructivo.</h3>
+				<span class="site-brand__copy">
+					<strong>PAVIMENTOS URBANOS Spa</strong>
+					<!-- <span>{company.tagline}</span> -->
+				</span>
 				<p>{company.description}</p>
-			</div>
-
-			<div class="footer-links">
-				<h3>Navegación</h3>
-				<ul>
-					{
-						navigation.map((item) => (
-							<li>
-								<a href={item.href}>{item.label}</a>
-							</li>
-						))
-					}
-				</ul>
-			</div>
-
-			<div class="footer-links">
-				<h3>Servicios</h3>
-				<ul>
-					{
-						services.map((service) => (
-							<li>
-								<a href={`/servicios/${service.slug}`}>{service.name}</a>
-							</li>
-						))
-					}
-				</ul>
-			</div>
-
-			<div class="footer-meta">
 				<div class="footer-social">
 					{
-						contactChannels.map((channel) => (
+						contactChannels.map(channel => (
 							<a href={channel.href} target="_blank" rel="noreferrer" aria-label={channel.title}>
 								<Icon name={channel.icon} />
 							</a>
@@ -59,12 +33,39 @@ import { company, contactChannels, navigation, services } from "@data/site";
 					}
 				</div>
 			</div>
+
+			<div class="footer-nav">
+				<div class="footer-links">
+					<h3 class="pb-3">Navegación</h3>
+					<ul>
+						{
+							navigation.map(item => (
+								<li>
+									<a href={item.href}>{item.label}</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+
+				<div class="footer-links">
+					<h3 class="pb-3">Servicios</h3>
+					<ul>
+						{
+							services.map(service => (
+								<li>
+									<a href={`/servicios/${service.slug}`}>{service.name}</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
 		</div>
 
 		<div class="footer-signature">
 			<p>{company.location}</p>
-			<p>{company.email}</p>
-			<p class="footer-note">© 2026 {company.legalName}. Todos los derechos reservados.</p>
+			<p>© 2026 {company.legalName}. Todos los derechos reservados.</p>
 		</div>
 	</div>
 </footer>

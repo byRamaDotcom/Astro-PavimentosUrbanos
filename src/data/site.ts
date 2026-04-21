@@ -1,5 +1,9 @@
 /** @format */
 
+import img3 from "@assets/images/img3.jpg";
+import img4 from "@assets/images/img4.jpg";
+import img5 from "@assets/images/img5.jpg";
+
 export const navigation = [
 	{ href: "/", label: "Inicio" },
 	{ href: "/servicios", label: "Servicios" },
@@ -67,7 +71,7 @@ export const typographyOptions = [
 
 export const hero = {
 	eyebrow: "Presentación corporativa 2026",
-	title: "Infraestructura urbana ejecutada con criterio técnico y presencia en terreno.",
+	title: "Infraestructura urbana profesional.",
 	description:
 		"Desarrollamos soluciones constructivas para urbanización, pavimentos y obras complementarias, combinando experiencia operacional, coordinación de especialidades y un estándar visual y técnico a la altura de cada proyecto.",
 	primaryCta: { href: "/contacto", label: "Solicitar contacto" },
@@ -77,26 +81,30 @@ export const hero = {
 export const heroSlides = [
 	{
 		id: "obra-01",
-		image: "/hero/obra-01.svg",
+		image: img3,
+		imagePosition: "center 58%",
 		kicker: "Urbanización",
-		title: "Frentes de obra pensados para mostrar escala, ejecución y control.",
+		title: "Superficies amplias y frentes ejecutados con terminación limpia.",
 		description:
-			"Reemplaza esta imagen por una fotografía real manteniendo el mismo archivo o la misma proporción visual.",
+			"Mostramos obras reales para transmitir escala, control de ejecución y presencia en terreno desde el primer pantallazo.",
 	},
 	{
 		id: "obra-02",
-		image: "/hero/obra-02.svg",
+		image: img4,
+		imagePosition: "center 42%",
 		kicker: "Pavimentación",
-		title: "Una cabecera editable para exhibir maquinaria, faena o terminaciones.",
-		description: "El carrusel permite ir sumando nuevas vistas sin rediseñar el home completo.",
+		title: "Maquinaria, proceso y terminación final en una misma escena.",
+		description:
+			"El recorte privilegia la operación en primer plano para que la cabecera se siga leyendo bien incluso en pantallas más bajas.",
 	},
 	{
 		id: "obra-03",
-		image: "/hero/obra-03.svg",
+		image: img5,
+		imagePosition: "center 54%",
 		kicker: "Desarrollo constructivo",
-		title: "Narrativa visual premium, más directa y más alineada con construcción.",
+		title: "Obras urbanas y superficies deportivas dentro del mismo lenguaje técnico.",
 		description:
-			"Puedes cambiar estas láminas por fotos propias y dejar el resto del hero intacto.",
+			"Usamos una imagen panorámica con resolución alta para mantener nitidez en pantallas grandes sin romper el ritmo del hero.",
 	},
 ];
 

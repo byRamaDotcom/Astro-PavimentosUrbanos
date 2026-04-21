@@ -9,7 +9,7 @@ import { hero, heroSlides, metrics } from "@data/site";
 				<article
 					class:list={["hero-slide", index === 0 && "is-active"]}
 					data-slide
-					style={`background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.22), rgba(10, 10, 10, 0.58)), url('${slide.image}');`}>
+					style={`background-image: linear-gradient(180deg, rgba(10, 10, 10, 0.22), rgba(10, 10, 10, 0.58)), url('${slide.image.src}'); --hero-image-position: ${slide.imagePosition ?? "center"};`}>
 					<div class="hero-slide__veil" />
 					<div class="site-shell hero-slide__inner">
 						<div class="hero-slide__content">

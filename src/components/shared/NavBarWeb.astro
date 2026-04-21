@@ -18,13 +18,13 @@ const navVariant = currentPath === "/" ? "home" : "interior";
 			</span>
 			<span class="site-brand__copy">
 				<strong>{company.name}</strong>
-				<span>Inicio · {company.tagline}</span>
+				<span>{company.tagline}</span>
 			</span>
 		</a>
 
 		<div class="site-nav__links">
 			{
-				navigation.map((item) => (
+				navigation.map(item => (
 					<a href={item.href} class:list={{ active: isActive(item.href) }}>
 						{item.label}
 					</a>
@@ -45,11 +45,11 @@ const navVariant = currentPath === "/" ? "home" : "interior";
 
 		<details class="site-nav__mobile">
 			<summary aria-label="Abrir navegación">
-				<span />
+				<span></span>
 			</summary>
 			<div class="site-nav__mobile-panel">
 				{
-					navigation.map((item) => (
+					navigation.map(item => (
 						<a href={item.href} class:list={{ active: isActive(item.href) }}>
 							{item.label}
 						</a>
