@@ -16,20 +16,22 @@ export const company = {
 	name: "Pavimentos Urbanos",
 	shortName: "Pavimentos Urbanos",
 	legalName: "Pavimentos Urbanos SpA",
-	tagline: "Expertos en desarrollo constructivo",
+	tagline: "Expertos en construcción",
 	siteUrl: "https://pavimentosurbanos.cl",
-	defaultOgImage: "/og-default.svg",
+	defaultOgImage: "/og-default.jpg",
 	recipientEmail: "jramirez2432@gmail.com",
+	// * Todo: Cambiar correo
 	description:
-		"Constructora con 30 años de trayectoria orientada a urbanización, pavimentación y obras civiles con foco en ejecución confiable, coordinación técnica y respuesta en terreno.",
+		"Constructora con +30 años de trayectoria orientada a urbanización, pavimentación y obras civiles con foco en ejecución confiable, coordinación técnica y respuesta en terreno.",
 	email: "contacto@pavimentosurbanos.com",
+	// * Todo: Cambiar correo
 	phone: "+56 9 9999 1331",
 	location: "Casa matriz: Santiago, Chile",
 	schedule: "Atención comercial de lunes a viernes, 08:30 a 18:00.",
 	coverage:
 		"Nos ubicamos en Santiago y realizamos proyectos urbanos a lo largo de todo el territorio nacional.",
 	seoDescription:
-		"Pavimentos Urbanos es una constructora con 30 años de experiencia en urbanización, pavimentación, movimientos de tierra, montajes eléctricos y obras civiles en Chile.",
+		"Pavimentos Urbanos es una constructora con +30 años de experiencia en urbanización, pavimentación, movimientos de tierra, montajes eléctricos y obras civiles en Chile.",
 };
 
 export const contactChannels = [
@@ -42,16 +44,23 @@ export const contactChannels = [
 	{
 		title: "WhatsApp comercial",
 		value: company.phone,
-		href: "https://wa.me/56900000000",
+		href: "https://wa.me/56999991331",
 		icon: "brand-whatsapp",
 	},
-	{ title: "Llamada", value: company.phone, href: "tel:+56900000000", icon: "phone" },
+	{ title: "Llamada", value: company.phone, href: "tel:+56999991331", icon: "phone" },
 	{
 		title: "LinkedIn corporativo",
 		value: "Perfil editable",
-		href: "https://www.linkedin.com",
+		href: "https://www.linkedin.com/company/pavimentosurbanos",
 		icon: "linkedin",
 	},
+	// ? Todo:
+	// {
+	// 	title: "Instagram",
+	// 	value: "Perfil editable",
+	// 	href: "https://www.instragram.com/pavimentosurbanos",
+	// 	icon: "instagram",
+	// },
 ];
 
 export const typographyOptions = [

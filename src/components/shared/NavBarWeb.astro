@@ -14,7 +14,7 @@ const navVariant = currentPath === "/" ? "home" : "interior";
 	<div class="site-nav__bar">
 		<a href="/" class="site-brand" aria-label={`Ir al inicio de ${company.name}`}>
 			<span class="site-brand__mark">
-				<Image src={logo} alt={`Logo ${company.name}`} width={72} quality="high" />
+				<Image src={logo} alt={`Logo ${company.name}`} width={92} quality="high" />
 			</span>
 			<span class="site-brand__copy">
 				<strong>{company.name}</strong>
@@ -33,13 +33,13 @@ const navVariant = currentPath === "/" ? "home" : "interior";
 		</div>
 
 		<div class="site-nav__actions">
-			<a href="/#contacto-directo" class="button button--secondary">
+			<a href="/#contacto-directo" class="button button--secondary" aria-label="Contacto directo">
 				<Icon name="sparkles" />
-				Contacto directo
+				<span class="site-nav__action-label">Contacto directo</span>
 			</a>
-			<a href="/contacto" class="button button--primary">
+			<a href="/contacto" class="button button--primary" aria-label="Solicitar reunión">
 				<Icon name="email" />
-				Solicitar reunión
+				<span class="site-nav__action-label">Solicitar reunión</span>
 			</a>
 		</div>
 
@@ -73,8 +73,23 @@ const navVariant = currentPath === "/" ? "home" : "interior";
 			nav[cleanupKey]();
 		}
 
+		let lastScrollY = window.scrollY;
+
 		const applyState = () => {
-			nav.dataset.scrolled = window.scrollY > 24 ? "true" : "false";
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			nav.dataset.scrolled = currentScrollY > 24 ? "true" : "false";
+
+			if (currentScrollY < 80) {
+				nav.dataset.compact = "false";
+			} else if (scrollDelta > 6) {
+				nav.dataset.compact = "true";
+			} else if (scrollDelta < -6) {
+				nav.dataset.compact = "false";
+			}
+
+			lastScrollY = Math.max(currentScrollY, 0);
 		};
 
 		applyState();
