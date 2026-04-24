@@ -80,7 +80,7 @@ export const typographyOptions = [
 
 export const hero = {
 	eyebrow: "Presentación corporativa 2026",
-	title: "Infraestructura urbana profesional.",
+	title: "Construcción urbana profesional.",
 	description:
 		"Desarrollamos soluciones constructivas para urbanización, pavimentos y obras complementarias, combinando experiencia operacional, coordinación de especialidades y un estándar visual y técnico a la altura de cada proyecto.",
 	primaryCta: { href: "/contacto", label: "Solicitar contacto" },

@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import beforeImage from "@assets/images/img4.jpg";
+import afterImage from "@assets/images/img5.jpg";
+---
+
+<section class="section-block before-after-section" aria-labelledby="before-after-title">
+	<div class="site-shell before-after-layout">
+		<div class="section-heading">
+			<p class="section-eyebrow">Transformacion en obra</p>
+			<h2 id="before-after-title">Antes y despues de un frente ejecutado.</h2>
+			<p class="section-copy">
+				Registro comparativo para mostrar recuperaciones de superficie, avances de terreno y cambios
+				de estado con evidencia fotografica.
+			</p>
+		</div>
+
+		<div class="before-after" data-before-after style="--before-after-position: 50%;">
+			<div class="before-after__stage">
+				<Image
+					src={afterImage}
+					alt="Estado despues del trabajo"
+					class="before-after__image"
+					width={920}
+					quality="high"
+				/>
+				<div class="before-after__before" aria-hidden="true">
+					<Image
+						src={beforeImage}
+						alt=""
+						class="before-after__image"
+						width={920}
+						quality="high"
+					/>
+				</div>
+				<span class="before-after__tag before-after__tag--before">Antes</span>
+				<span class="before-after__tag before-after__tag--after">Despues</span>
+				<div class="before-after__handle" aria-hidden="true"></div>
+				<input
+					class="before-after__range"
+					type="range"
+					min="0"
+					max="100"
+					value="50"
+					aria-label="Comparar antes y despues"
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	function mountBeforeAfter() {
+		document.querySelectorAll("[data-before-after]").forEach(comparison => {
+			const input = comparison.querySelector(".before-after__range");
+			if (!(input instanceof HTMLInputElement)) return;
+
+			const updatePosition = () => {
+				comparison.style.setProperty("--before-after-position", `${input.value}%`);
+			};
+
+			updatePosition();
+			input.addEventListener("input", updatePosition);
+		});
+	}
+
+	document.addEventListener("astro:page-load", mountBeforeAfter);
+	mountBeforeAfter();
+</script>

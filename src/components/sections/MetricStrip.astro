@@ -1,0 +1,14 @@
+---
+import { metrics } from "@data/site";
+---
+
+<section class="metric-strip" aria-label="Indicadores de experiencia">
+	<div class="site-shell hero-metrics">
+		{metrics.map(metric => (
+			<div class="metric-card">
+				<strong>{metric.value}</strong>
+				<span>{metric.label}</span>
+			</div>
+		))}
+	</div>
+</section>

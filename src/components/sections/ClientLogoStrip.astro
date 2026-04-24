@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import alicante from "@assets/clientsLogos/alicante.png";
+import besalco from "@assets/clientsLogos/besalco.png";
+import cencosud from "@assets/clientsLogos/cencosud.png";
+import conpax from "@assets/clientsLogos/conpax.png";
+import easy from "@assets/clientsLogos/easy.png";
+import entel from "@assets/clientsLogos/entel.png";
+import fernandezWood from "@assets/clientsLogos/Fernandez-Wood-Color.png";
+import jumbo from "@assets/clientsLogos/jumbo.png";
+import metrogas from "@assets/clientsLogos/metrogas.png";
+import paris from "@assets/clientsLogos/paris.png";
+import telefonica from "@assets/clientsLogos/telefonica.png";
+import uc from "@assets/clientsLogos/uc-color.png";
+
+const clients = [
+	{ name: "Cencosud", logo: cencosud },
+	{ name: "Easy", logo: easy },
+	{ name: "Jumbo", logo: jumbo },
+	{ name: "Paris", logo: paris },
+	{ name: "Entel", logo: entel },
+	{ name: "Universidad Catolica", logo: uc },
+	{ name: "Metrogas", logo: metrogas },
+	{ name: "Conpax", logo: conpax },
+	{ name: "Besalco", logo: besalco },
+	{ name: "Fernandez Wood", logo: fernandezWood },
+	{ name: "Alicante", logo: alicante },
+	{ name: "Telefonica", logo: telefonica },
+];
+---
+
+<section class="client-strip" aria-labelledby="client-strip-title">
+	<div class="site-shell">
+		<div class="client-strip__header">
+			<p class="section-eyebrow">Confian en nosotros</p>
+			<h3 id="client-strip-title">Clientes y marcas que han trabajado con Pavimentos Urbanos.</h3>
+		</div>
+		<div class="client-strip__rail" aria-label="Clientes">
+			{
+				clients.map(client => (
+					<div class="client-logo">
+						<Image src={client.logo} alt={client.name} widths={[160, 240, 320]} sizes="160px" />
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
